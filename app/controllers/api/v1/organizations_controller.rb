@@ -18,7 +18,7 @@ class Api::V1::OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params)
 
     if @organization.save
-      render json: @organization, status: :created, location: @organization
+      render json: @organization, status: :created
     else
       render json: @organization.errors, status: :unprocessable_entity
     end
@@ -36,6 +36,7 @@ class Api::V1::OrganizationsController < ApplicationController
   # DELETE /organizations/1
   def destroy
     @organization.destroy
+    render json: {message: 'Organization deleted!'}
   end
 
   private
