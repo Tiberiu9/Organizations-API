@@ -1,4 +1,5 @@
 class Api::V1::OrganizationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_organization, only: %i[ show update destroy ]
 
   # GET /organizations

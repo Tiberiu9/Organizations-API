@@ -1,4 +1,4 @@
-require 'csv'
+require 'csv'    # Calling the CSV library need to properly parse the CSV data
 
 puts "Seeding..."
 

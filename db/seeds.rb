@@ -10,3 +10,10 @@
 
 # Uncomment the bellow line to seed from the lib/seed/organizations.csv
 require_relative './organization_seeding.rb'
+
+User.destroy_all
+
+user1 = User.create!(email: "user1@user.com", password: "password", password_confirmation: "password")
+user2 = User.create!(email: "user2@user.com", password: "password", password_confirmation: "password")
+
+puts "Created Users: #{user1.email} and #{user2.email}" 
