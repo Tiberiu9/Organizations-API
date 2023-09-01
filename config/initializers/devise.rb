@@ -263,7 +263,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.navigational_formats = []
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -280,6 +280,12 @@ Devise.setup do |config|
   # config.warden do |manager|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
+  #   manager.scope_defaults :user, store: false
+  # end
+
+  # config.warden do |warden|
+  #   warden.scope_defaults :user, store: false  # <---- This will use the config even if it's not passed to the method opts
+  #   warden.scope_defaults :admin, store: false # <---- You need to configure it for each scope you need it for
   # end
 
   # ==> Mountable engine configurations

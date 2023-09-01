@@ -1,6 +1,6 @@
 class Api::V1::OrganizationsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_organization, only: %i[ show update destroy ]
+  before_action :authenticate_user!
 
   # GET /organizations
   def index
@@ -37,7 +37,7 @@ class Api::V1::OrganizationsController < ApplicationController
   # DELETE /organizations/1
   def destroy
     @organization.destroy
-    render json: {message: 'Organization deleted!'}
+    render json: {message: "Organization #{@organization.name} deleted!"}
   end
 
   private
