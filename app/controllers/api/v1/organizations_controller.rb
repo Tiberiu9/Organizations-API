@@ -1,6 +1,6 @@
 class Api::V1::OrganizationsController < ApplicationController
-  before_action :set_organization, only: %i[ show update destroy ]
   before_action :authenticate_user!
+  before_action :set_organization, only: %i[show update destroy]
 
   # GET /organizations
   def index
@@ -37,17 +37,19 @@ class Api::V1::OrganizationsController < ApplicationController
   # DELETE /organizations/1
   def destroy
     @organization.destroy
-    render json: {message: "Organization #{@organization.name} deleted!"}
+    render json: { message: "Organization #{@organization.name} deleted!" }
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_organization
-      @organization = Organization.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def organization_params
-      params.require(:organization).permit(:name, :website, :country, :description, :founded, :industry, :employees_number)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_organization
+    @organization = Organization.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def organization_params
+    params.require(:organization).permit(:name, :website, :country, :description, :founded, :industry,
+                                         :employees_number).with_defaults(user_id: current_user.id)
+  end
 end
