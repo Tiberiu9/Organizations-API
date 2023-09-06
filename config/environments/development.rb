@@ -53,6 +53,8 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # Limit the size of the log folder. 1 is the number of log files and 10 is the size in MB
+  config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 10 * 1024 * 1024)
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

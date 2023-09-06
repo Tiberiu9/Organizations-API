@@ -4,8 +4,7 @@ class Api::V1::OrganizationsController < ApplicationController
 
   # GET /organizations
   def index
-    @organizations = Organization.all
-
+    @organizations = Organization.by_user(current_user)
     render json: @organizations
   end
 
@@ -44,7 +43,9 @@ class Api::V1::OrganizationsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_organization
-    @organization = Organization.find(params[:id])
+    @organization = Organization.by_user(current_user).find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Unable to find Organization' }, status: 404
   end
 
   # Only allow a list of trusted parameters through.

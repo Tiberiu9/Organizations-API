@@ -180,6 +180,8 @@ Devise.setup do |config|
   # Range for password length.
   config.password_length = 6..128
 
+  # config.password_complexity = { digit: 1, lower: 1, symbol: 1, upper: 1 }
+
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
