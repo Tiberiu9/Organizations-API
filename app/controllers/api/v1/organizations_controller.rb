@@ -45,7 +45,8 @@ class Api::V1::OrganizationsController < ApplicationController
   def set_organization
     @organization = Organization.by_user(current_user).find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Unable to find Organization' }, status: 404
+    render json: { error: 'Unable to find Organization. Please specify the ID of the organization in the 
+    request URL. SYNTAX: https://organizations.fly.dev/api/v1/organizations//"ID OF THE ORGANIZATION"'}, status: 404
   end
 
   # Only allow a list of trusted parameters through.
